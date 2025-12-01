@@ -1,5 +1,5 @@
-import React from "react";
-import { Navigate, type ReactNode } from "react-router-dom";
+import React, { type ReactNode } from "react";
+import { Navigate } from "react-router-dom";
 
 type PrivateRouteProps = {
   children: ReactNode;

@@ -8,11 +8,10 @@ export type LoginData = {
 };
 
 type Props = {
-  onSubmit?: (data: LoginData) => void;
   className?: string;
 };
 
-const LoginForm: React.FC<Props> = ({ onSubmit, className = "" }) => {
+const LoginForm: React.FC<Props> = ({ className = "" }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [touched, setTouched] = useState({ email: false, password: false });
