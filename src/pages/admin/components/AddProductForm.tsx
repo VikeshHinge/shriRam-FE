@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import { addProduct } from "../../../utils/apicall";
+import { authanticateRequest } from "../../../utils/services";
 
 interface AddProductFormProps {
   name: string;
@@ -78,7 +79,6 @@ const AddProductForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const requiredFields = ["name", "price", "image"] as const;
-
     for (const field of requiredFields) {
       const value = formData[field];
 
@@ -86,6 +86,11 @@ const AddProductForm = () => {
         alert(`${field} is missing`);
         return;
       }
+    }
+    const check = authanticateRequest();
+    if (!check) {
+      alert("Not Authorised !!");
+      return;
     }
     try {
       const res = await addProduct(formData);
@@ -107,7 +112,7 @@ const AddProductForm = () => {
           delete: false,
         });
       }
-      alert("success !!")
+      alert("success !!");
     } catch (err: any) {
       alert(err.message);
     }

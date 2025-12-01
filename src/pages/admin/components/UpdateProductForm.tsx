@@ -4,6 +4,7 @@ import { getProductDataAdmin, updateProduct } from "../../../utils/apicall";
 import Form from "./Form";
 import { ProductCard } from "../../../components/Productcard";
 import debounce from "debounce";
+import { authanticateRequest } from "../../../utils/services.ts";
 
 const initialValue = {
   _id:"",
@@ -76,6 +77,13 @@ const UpdateProductForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const check = authanticateRequest();
+    if (!check) {
+      alert("Not Authorised !!");
+      return;
+    }
+
     await updateProduct(updateData);
     setUpdateData({ ...updateData });
     setShowForm(false);

@@ -1,8 +1,10 @@
 import axios from "axios";
 
-export const getProductByID = async (id:string) => {
+export const getProductByID = async (id: string) => {
   try {
-    const { data } = await axios.get(`https://shriram-8mtz.onrender.com/products/${id}`);
+    const { data } = await axios.get(
+      `https://shriram-8mtz.onrender.com/products/${id}`
+    );
     return data;
   } catch (err) {
     return err;
@@ -48,9 +50,22 @@ export const updateProduct = async (payload: any) => {
 
 export const getProductDataAdmin = async (val: string) => {
   try {
-    const { data } = await axios.get(`https://shriram-8mtz.onrender.com/product/getproductsadmin?search=${val}`);
+    const { data } = await axios.get(
+      `https://shriram-8mtz.onrender.com/product/getproductsadmin?search=${val}`
+    );
     return data;
   } catch (err) {
     return err;
   }
+};
+
+export const loginAdmin = async (payload: {
+  password: string;
+  email: string;
+}) => {
+  const { data } = await axios.post(
+    "https://shriram-8mtz.onrender.com/user/login/user/login",
+    payload
+  );
+  return data;
 };
