@@ -64,7 +64,7 @@ export const loginAdmin = async (payload: {
   email: string;
 }) => {
   const { data } = await axios.post(
-    "https://shriram-8mtz.onrender.com/user/login/user/login",
+    "https://shriram-8mtz.onrender.com/user/login",
     payload
   );
   return data;
